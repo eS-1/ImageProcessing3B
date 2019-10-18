@@ -24,7 +24,7 @@ int main()
 
 	if (!cap.isOpened())
 	{
-		printf("There is no camera.");
+		printf("Can't find camera.");
 		return -1;
 	}
 
