@@ -163,7 +163,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HandDetector.cpp" />
     <ClCompile Include="Project3B.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HandDetector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
