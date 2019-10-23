@@ -7,6 +7,7 @@ std::vector<int> HSV_UPPER = { 20, 150, 255 };
 const std::string MASK = "Mask";
 const std::string FRAME = "Frame";
 const std::string HSV = "HSV";
+const std::string YCRCB = "yCrCb";
 const std::string RESULT = "Result";
 
 
