@@ -4,7 +4,7 @@
 std::vector<int> HSV_LOWER = { 0, 30, 60 };
 std::vector<int> HSV_UPPER = { 20, 150, 255 };
 
-const std::string MASK = "Mask";
+const std::string MASKED = "Masked";
 const std::string FRAME = "Frame";
 const std::string HSV = "HSV";
 const std::string RESULT = "Result";
@@ -21,22 +21,24 @@ int main()
 	}
 
 	HandDetector handDetector;
-	cv::Mat frame, frame_hsv;
+	cv::Mat frame, frame_hsv, frame_masked;
 	std::vector<std::vector<cv::Point>> contours;
 
 	while (cap.read(frame))
 	{
-		handDetector.DetectContours(frame, frame_hsv, contours);
+		handDetector.DetectContours(frame, frame_hsv, frame_masked, contours);
 
 		cv::imshow(FRAME, frame);
 		cv::imshow(HSV, frame_hsv);
+		cv::imshow(MASKED, frame_masked);
 
 		const int key = cv::waitKey(1);
 		if (key == 'q') { break; }
 		else if (key == 'c')
 		{
 			cv::imwrite("images/frame.png", frame);
-			cv::imwrite("images/mask.png", frame_hsv);
+			cv::imwrite("images/hsv.png", frame_hsv);
+			cv::imwrite("images/masked.png", frame_masked);
 		}
 	}
 	cv::destroyAllWindows();
