@@ -22,11 +22,10 @@ int main()
 
 	HandDetector handDetector;
 	cv::Mat frame, frame_hsv, frame_masked;
-	std::vector<std::vector<cv::Point>> contours;
 
 	while (cap.read(frame))
 	{
-		handDetector.DetectContours(frame, frame_hsv, frame_masked, contours);
+		handDetector.DetectContours(frame, frame_hsv, frame_masked);
 
 		cv::imshow(FRAME, frame);
 		cv::imshow(HSV, frame_hsv);

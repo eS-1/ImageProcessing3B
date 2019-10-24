@@ -7,7 +7,7 @@ class HandDetector
 public:
 	HandDetector();
 	~HandDetector() = default;
-	void DetectContours(cv::Mat& frame, cv::Mat& result_hsv, cv::Mat& result_masked, std::vector<std::vector<cv::Point>>& conts);
+	void DetectContours(cv::Mat& frame, cv::Mat& result_hsv, cv::Mat& result_masked);
 
 private:
 	std::vector<int> hsv_lower;
@@ -15,4 +15,5 @@ private:
 	cv::Mat frame_hsv;
 	cv::Mat mask_f;
 	cv::Rect rect_area;
+	std::vector<std::vector<cv::Point>> contours;
 };
