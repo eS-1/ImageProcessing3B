@@ -3,12 +3,16 @@
 HandDetector::HandDetector() : hsv_lower({0, 30, 60}), hsv_upper({20, 150, 240}),
                                rect_area(cv::Rect(170, 90, 300, 300)) {}
 
+// create mask
+void HandDetector::set_mask_f(cv::Mat& frame, cv::Mat& mask)
+{
+	mask_f = cv::Mat::zeros(frame.rows, frame.cols, CV_8UC1);
+	mask = mask_f;
+	cv::rectangle(mask_f, rect_area, cv::Scalar(255), -1);
+}
+
 void HandDetector::DetectContours(cv::Mat& frame, cv::Mat& result_hsv, cv::Mat& result_masked)
 {
-	// create mask
-	mask_f = cv::Mat::zeros(frame.rows, frame.cols, CV_8UC1);
-	cv::rectangle(mask_f, rect_area, cv::Scalar(255), -1);
-
 	cv::cvtColor(frame, frame_hsv, cv::COLOR_BGR2HSV);
 	cv::inRange(frame_hsv, hsv_lower, hsv_upper, result_hsv);
 	cv::bitwise_and(result_hsv, mask_f, result_masked);

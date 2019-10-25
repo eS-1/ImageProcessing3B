@@ -21,7 +21,11 @@ int main()
 	}
 
 	HandDetector handDetector;
-	cv::Mat frame, frame_hsv, frame_masked;
+	cv::Mat frame, frame_hsv, frame_masked, mask_f;
+
+	// create mask
+	cap.read(frame);
+	handDetector.set_mask_f(frame, mask_f);
 
 	while (cap.read(frame))
 	{

@@ -7,6 +7,7 @@ class HandDetector
 public:
 	HandDetector();
 	~HandDetector() = default;
+	void set_mask_f(cv::Mat& frame, cv::Mat& mask);
 	void DetectContours(cv::Mat& frame, cv::Mat& result_hsv, cv::Mat& result_masked);
 
 private:
