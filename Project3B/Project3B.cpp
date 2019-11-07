@@ -1,8 +1,6 @@
 ﻿#include <opencv2/opencv.hpp>
 #include "HandDetector.h"
 
-std::vector<int> HSV_LOWER = { 0, 30, 60 };
-std::vector<int> HSV_UPPER = { 20, 150, 255 };
 
 const std::string MASKED = "Masked";
 const std::string FRAME = "Frame";
