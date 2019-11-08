@@ -23,15 +23,17 @@ int main()
 
 	// create mask
 	cap.read(frame);
-	handDetector.set_mask_f(frame, mask_f);
+	handDetector.SetMaskF(frame, mask_f);
+	handDetector.DetectContoursOnSamples();
 
 	while (cap.read(frame))
 	{
 		handDetector.DetectContours(frame, frame_hsv, frame_masked);
 
 		cv::imshow(FRAME, frame);
-		cv::imshow(HSV, frame_hsv);
-		cv::imshow(MASKED, frame_masked);
+		// cv::imshow(MASKED, frame_masked);
+		// cv::imshow(HSV, frame_hsv);
+		// handDetector.ShowSamples();
 
 		const int key = cv::waitKey(1);
 		if (key == 'q') { break; }

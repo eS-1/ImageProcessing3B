@@ -7,18 +7,23 @@ class HandDetector
 public:
 	HandDetector();
 	~HandDetector() = default;
-	void set_mask_f(cv::Mat& frame, cv::Mat& mask);
+	void SetMaskF(cv::Mat& frame, cv::Mat& mask);
+	void DetectContours(cv::Mat& frame, cv::Mat& dst);
 	void DetectContours(cv::Mat& frame, cv::Mat& result_hsv, cv::Mat& result_masked);
+	void DetectContoursOnSamples();
+	void ShowSamples();
 
 private:
-	std::vector<int> hsv_lower;
-	std::vector<int> hsv_upper;
+	std::array<int, 3> hsv_lower;
+	std::array<int, 3> hsv_upper;
 	std::vector<int> hull_index;
+	std::vector<cv::Mat> samples;
 	cv::Mat frame_hsv;
 	cv::Mat mask_f;
 	cv::Rect rect_area;
 	cv::Rect hull_rect;
 	std::vector<std::vector<cv::Point>> contours;
+	std::vector<std::vector<std::vector<cv::Point>>> sample_contours;
 	std::vector<cv::Point> hulls;
 };
 
