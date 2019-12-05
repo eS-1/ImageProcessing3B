@@ -19,29 +19,23 @@ int main()
 	}
 
 	HandDetector handDetector;
-	cv::Mat frame, frame_hsv, frame_masked, mask_f;
+	cv::Mat frame;
 
-	// create mask
 	cap.read(frame);
-	handDetector.SetMaskF(frame, mask_f);
-	handDetector.DetectContoursOnSamples();
+	handDetector.BGSubtract(frame);
+	handDetector.ShowSamples();
 
 	while (cap.read(frame))
 	{
-		handDetector.DetectContours(frame, frame_hsv, frame_masked);
+		handDetector.BGSubtract(frame);
 
 		cv::imshow(FRAME, frame);
-		// cv::imshow(MASKED, frame_masked);
-		// cv::imshow(HSV, frame_hsv);
-		// handDetector.ShowSamples();
 
 		const int key = cv::waitKey(1);
 		if (key == 'q') { break; }
 		else if (key == 'c')
 		{
 			cv::imwrite("images/frame.png", frame);
-			cv::imwrite("images/hsv.png", frame_hsv);
-			cv::imwrite("images/masked.png", frame_masked);
 		}
 	}
 	cv::destroyAllWindows();
