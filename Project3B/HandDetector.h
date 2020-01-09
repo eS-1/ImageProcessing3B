@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <array>
 #include <opencv2/opencv.hpp>
 
 class HandDetector
@@ -7,13 +8,14 @@ class HandDetector
 public:
 	HandDetector();
 	~HandDetector() = default;
-	void BGSubtract(cv::Mat frame);
+	void detectHand(cv::Mat &frame);
 	void ShowSamples();
-	void MatchShapes(cv::Mat& frame);
+	void MatchShapes(cv::Mat &frame);
 
 private:
 	std::vector<cv::Mat> samples;
 	std::vector<cv::Mat> samples_gray;
-	cv::Ptr<cv::BackgroundSubtractor> bgSubtractor;
-	cv::Mat fore_ground_mask;
+	std::array<int, 3> hsv_lower;
+	std::array<int, 3> hsv_higher;
+	cv::Mat hsv_mask;
 };
